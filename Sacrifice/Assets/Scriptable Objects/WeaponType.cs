@@ -20,4 +20,6 @@ public class WeaponType : ScriptableObject {
 
     public bool destroyProjectileOnCollision = true;
 
+    public float dispersion;
+
 }

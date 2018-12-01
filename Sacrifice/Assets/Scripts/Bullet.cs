@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class Bullet : MonoBehaviour {
 
     public int damage;
@@ -10,7 +12,10 @@ public class Bullet : MonoBehaviour {
     Rigidbody2D rb;
     SpriteRenderer sr;
 
+    private void Update()
+    {
 
+    }
     private void OnTriggerEnter2D(Collider2D collider)
     {
         col = GetComponent<Collider2D>();

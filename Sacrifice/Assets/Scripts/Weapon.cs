@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Weapon : MonoBehaviour {
 
     public GameObject bulletSpawner;
     public WeaponType weaponType;
     SpriteRenderer sr;
     WeaponType currentWeapon;
-    float knockback;
+    public float knockback;
     Bullet bullet;
     float rateOfFire;
+    public float dispersion;
     [HideInInspector]public int shootCost;
+
 	// Use this for initialization
 
 	void Start ()
@@ -34,9 +37,6 @@ public class Weapon : MonoBehaviour {
         currentBullet.damage = weaponType.damage;
         currentBullet.destroyonCollision = weaponType.destroyProjectileOnCollision;
 
-
-
-        
     }
 
     private void InitializeWeapon()
