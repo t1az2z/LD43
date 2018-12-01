@@ -28,7 +28,10 @@ public class Bullet : MonoBehaviour {
         }
 
         if (destroyonCollision)
-            Destroy(gameObject, 3);
+        {
+            //Instantiate particles
+            Destroy(gameObject);
+        }
         else
         {
             col.enabled = false;

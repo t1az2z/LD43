@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212483325898976912}
   - component: {fileID: 114616230275297100}
   - component: {fileID: 50996614461402660}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  destroyonCollision: 0
 --- !u!212 &212483325898976912
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -106,9 +107,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -346685481
-  m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingLayerID: 563768631
+  m_SortingLayer: 2
+  m_SortingOrder: -1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
