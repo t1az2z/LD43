@@ -47,11 +47,11 @@ TagManager:
   - name: Background
     uniqueID: 3044085247
     locked: 0
-  - name: Hero
-    uniqueID: 2607399985
-    locked: 0
   - name: Enemy
     uniqueID: 563768631
+    locked: 0
+  - name: Hero
+    uniqueID: 2607399985
     locked: 0
   - name: Weapon
     uniqueID: 4095902613

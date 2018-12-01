@@ -7,4 +7,4 @@ PhysicsMaterial2D:
   m_PrefabInternal: {fileID: 0}
   m_Name: Slipery
   friction: 0
-  bounciness: 29.74
+  bounciness: 0

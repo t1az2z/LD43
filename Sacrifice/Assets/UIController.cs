@@ -6,29 +6,49 @@ using TMPro;
 
 public class UIController : MonoBehaviour {
 
-    GameManager gameManager;
     public Image healthBar;
     public TextMeshProUGUI healthText;
     float maxHealth;
     float health;
 
-	// Use this for initialization
-	void Start () {
+    public TextMeshProUGUI ammoText;
+    float ammo;
+    float maxAmmo;
+
+
+
+    // Use this for initialization
+    void Start () {
         maxHealth = GameManager.Instance.player.maxHP;
         health = GameManager.Instance.player.hp;
 
+        maxAmmo = GameManager.Instance.player.maxAmmo;
+        ammo = GameManager.Instance.player.ammo;
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
+
         UpdatehealthBar();
-        healthText.text = health + "/" + maxHealth;
+        UpdateAmmo();
     }
 
+    private void UpdateAmmo()
+    {
+        maxAmmo = GameManager.Instance.player.maxAmmo;
+        ammo = GameManager.Instance.player.ammo;
+        ammoText.text = ammo + "/" + maxAmmo;
+    }
     private void UpdatehealthBar()
     {
+        maxHealth = GameManager.Instance.player.maxHP;
         health = GameManager.Instance.player.hp;
+        print(health);
+        print(maxHealth);
+        print(health / maxHealth);
         healthBar.fillAmount = health / maxHealth;
+
+        healthText.text = health + "/" + maxHealth;
     }
 }
