@@ -6,7 +6,7 @@ public class Weapon : MonoBehaviour {
 
     public GameObject bulletSpawner;
     public WeaponType weaponType;
-    Sprite sprite;
+    SpriteRenderer sr;
     WeaponType currentWeapon;
     float knockback;
     Bullet bullet;
@@ -30,6 +30,7 @@ public class Weapon : MonoBehaviour {
         var rb = currentBullet.GetComponent<Rigidbody2D>();
         rb.velocity = direction * currentWeapon.bulletSpeed;
         currentBullet.damage = weaponType.damage;
+        currentBullet.destroyonCollision = weaponType.destroyProjectileOnCollision;
 
 
 
@@ -38,9 +39,10 @@ public class Weapon : MonoBehaviour {
 
     private void InitializeWeapon()
     {
+        sr = GetComponent<SpriteRenderer>();
         currentWeapon = weaponType;
         shootCost = weaponType.shootCost;
-        sprite = weaponType.sprite;
+        sr.sprite = weaponType.sprite;
         knockback = weaponType.knockback;
         bullet = weaponType.bulletType.GetComponent<Bullet>();
     }

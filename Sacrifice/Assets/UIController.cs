@@ -44,9 +44,6 @@ public class UIController : MonoBehaviour {
     {
         maxHealth = GameManager.Instance.player.maxHP;
         health = GameManager.Instance.player.hp;
-        print(health);
-        print(maxHealth);
-        print(health / maxHealth);
         healthBar.fillAmount = health / maxHealth;
 
         healthText.text = health + "/" + maxHealth;

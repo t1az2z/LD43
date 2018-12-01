@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour {
     [SerializeField] int hp;
     public int damage;
     public int hpToRestore;
-    Collider2D collider;
+    public Collider2D collider;
     Player player;
 
     private void Start()

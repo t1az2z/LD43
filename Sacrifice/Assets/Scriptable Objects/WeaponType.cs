@@ -18,4 +18,6 @@ public class WeaponType : ScriptableObject {
     public int damage;
     public ParticleSystem bulletParticles;
 
+    public bool destroyProjectileOnCollision = true;
+
 }
