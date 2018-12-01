@@ -20,9 +20,14 @@ public class Enemy : MonoBehaviour {
         hp -= damage;
         if (hp <= 0)
         {
-            //Play sound and animation.
-            player.AddHp(hpToRestore);
-            collider.enabled = false;
+            EnemyDeath();
         }
+    }
+
+    private void EnemyDeath()
+    {
+        //Play sound and animation.
+        player.AddHp(hpToRestore);
+        collider.enabled = false;
     }
 }

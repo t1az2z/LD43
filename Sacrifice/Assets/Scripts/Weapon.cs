@@ -25,6 +25,8 @@ public class Weapon : MonoBehaviour {
         var currentBullet = Instantiate(bullet, bulletSpawner.transform.position, transform.rotation);
         var bSr = currentBullet.gameObject.GetComponent<SpriteRenderer>();
         bSr.sprite = weaponType.bulletSprite;
+        if (weaponType.destroyProjectileOnCollision)
+            sr.sortingOrder += 1;
         var col = currentBullet.gameObject.AddComponent<BoxCollider2D>();
         col.isTrigger = true;
         var rb = currentBullet.GetComponent<Rigidbody2D>();
