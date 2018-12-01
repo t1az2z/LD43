@@ -2,34 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet1 : MonoBehaviour {
+public class Bullet : MonoBehaviour {
 
-    public Vector2 targetPos;
-    public float speed;
+    public int damage;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-	}
-
-    private void OnCollisionEnter(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collider.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Enemy hit");
+            collider.GetComponent<Enemy>().TakeDamage(damage);
+            Destroy(gameObject, 3);
         }
-        else if (collision.CompareTag("Obstacle"))
+        else if (collider.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("Obstacle hit");
+            Destroy(gameObject, 3);
         }
-        else if (collision.CompareTag("Destructible"))
+        else if (collider.gameObject.CompareTag("Destructible"))
         {
             Debug.Log("Destructible Hit");
+            Destroy(gameObject, 3);
         }
     }
 }

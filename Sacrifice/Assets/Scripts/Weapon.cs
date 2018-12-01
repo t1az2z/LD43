@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour {
 
+    public GameObject bulletSpawner;
     public WeaponType weaponType;
     Sprite sprite;
-    private WeaponType currentWeapon;
+    WeaponType currentWeapon;
     float knockback;
     Bullet bullet;
     float rateOfFire;
@@ -18,9 +19,20 @@ public class Weapon : MonoBehaviour {
     }
 
 
-    public void Shoot()
+    public void Shoot(Vector2 direction)
     {
-        Debug.Log("Weapon " + weaponType + ". Bullet " + bullet + ". Knockback " + knockback);
+        var currentBullet = Instantiate(bullet, bulletSpawner.transform.position, transform.rotation);
+        var bSr = currentBullet.gameObject.GetComponent<SpriteRenderer>();
+        bSr.sprite = weaponType.bulletSprite;
+        var col = currentBullet.gameObject.AddComponent<BoxCollider2D>();
+        col.isTrigger = true;
+        var rb = currentBullet.GetComponent<Rigidbody2D>();
+        rb.velocity = direction * currentWeapon.bulletSpeed;
+        currentBullet.damage = weaponType.damage;
+
+
+
+        
     }
 
     private void InitializeWeapon()
@@ -28,6 +40,6 @@ public class Weapon : MonoBehaviour {
         currentWeapon = weaponType;
         sprite = weaponType.sprite;
         knockback = weaponType.knockback;
-        bullet = weaponType.bulletType;
+        bullet = weaponType.bulletType.GetComponent<Bullet>();
     }
 }

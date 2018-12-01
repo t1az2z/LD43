@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     private Vector2 moveVelocity;
     Vector2 moveInput;
     [HideInInspector]public float externalForcesFactor = 1;
-    private Vector2 mousePosition;
+    private Vector3 mousePosition;
 
     public Weapon weapon;
 
@@ -25,9 +25,9 @@ public class Player : MonoBehaviour {
     private void Update()
     {
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        mousePosition = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+        mousePosition = (new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0) - transform.position);
         if (Input.GetMouseButtonDown(0))
-            weapon.Shoot();
+            weapon.Shoot(mousePosition.normalized);
         RotateAndFlipDependingOnMousePos(mousePosition);
     }
     // Update is called once per frame

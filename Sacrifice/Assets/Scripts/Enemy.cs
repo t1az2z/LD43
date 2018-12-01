@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
+    [SerializeField] int hp;
     public int damage;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    Collider2D collider;
+
+    private void Start()
+    {
+        collider = GetComponent<Collider2D>();
+    }
+    public void TakeDamage(int damage)
+    {
+        hp -= damage;
+        if (hp <= 0)
+        {
+            //Play sound and animation.
+            //Player.AddHp
+            collider.enabled = false;
+        }
+    }
 }
