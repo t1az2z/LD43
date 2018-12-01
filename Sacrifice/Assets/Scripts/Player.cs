@@ -13,13 +13,19 @@ public class Player : MonoBehaviour {
     private Vector3 mousePosition;
 
     public Weapon weapon;
+    private int shootCost;
+    public int ammo;
+    public int maxAmmo;
+    public int ammoAmountToGetForPrice = 10;
 
-
+    public int maxHP = 10;
     public int hp = 10;
+    [Tooltip("In HP")] public int ammoPrice = 1;
 
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody2D>();	
+        rb = GetComponent<Rigidbody2D>();
+        shootCost = weapon.shootCost;
 	}
 
     private void Update()
@@ -27,15 +33,43 @@ public class Player : MonoBehaviour {
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         mousePosition = (new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0) - transform.position);
         if (Input.GetMouseButtonDown(0))
-            weapon.Shoot(mousePosition.normalized);
+        {
+            if (ammo - shootCost >= 0)
+            {
+                weapon.Shoot(mousePosition.normalized);
+                ammo -= shootCost;
+            }
+        }
+        if (Input.GetButtonDown("Jump"))
+            GetAmmo();
         RotateAndFlipDependingOnMousePos(mousePosition);
     }
-    // Update is called once per frame
+
     void FixedUpdate ()
     {
         PlayerMovement();
     }
 
+    void GetAmmo()
+    {
+        if (ammo < maxAmmo)
+        {
+            if (ammo + ammoAmountToGetForPrice <= maxAmmo)
+            {
+                hp -= ammoPrice;
+                ammo += ammoAmountToGetForPrice;
+            }
+            else
+            {
+                hp -= ammoPrice;
+                ammo += maxAmmo - ammo;
+            }
+        }
+        else
+        {
+            //indicate max ammo
+        }
+    }
     void RotateAndFlipDependingOnMousePos(Vector3 mousePos)
     {
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - weapon.transform.position;
@@ -68,6 +102,14 @@ public class Player : MonoBehaviour {
         {
             TakeDamage(collision);
         }
+    }
+
+    public void AddHp(int ammount)
+    {
+        if (hp + ammount <= maxHP)
+            hp += ammount;
+        else
+            hp += maxHP - hp;
     }
 
     private void TakeDamage(Collision2D collision)

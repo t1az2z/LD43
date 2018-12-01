@@ -6,10 +6,13 @@ public class Enemy : MonoBehaviour {
 
     [SerializeField] int hp;
     public int damage;
+    public int hpToRestore;
     Collider2D collider;
+    Player player;
 
     private void Start()
     {
+        player = FindObjectOfType<Player>();
         collider = GetComponent<Collider2D>();
     }
     public void TakeDamage(int damage)
@@ -18,7 +21,7 @@ public class Enemy : MonoBehaviour {
         if (hp <= 0)
         {
             //Play sound and animation.
-            //Player.AddHp
+            player.AddHp(hpToRestore);
             collider.enabled = false;
         }
     }

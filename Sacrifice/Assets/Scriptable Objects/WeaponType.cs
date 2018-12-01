@@ -12,7 +12,7 @@ public class WeaponType : ScriptableObject {
     public float rateOfFire;
 
     public Sprite bulletSprite;
-
+    public int shootCost;
 
     public float bulletSpeed;
     public int damage;

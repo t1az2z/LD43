@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour {
     float knockback;
     Bullet bullet;
     float rateOfFire;
+    [HideInInspector]public int shootCost;
 	// Use this for initialization
 
 	void Start ()
@@ -38,6 +39,7 @@ public class Weapon : MonoBehaviour {
     private void InitializeWeapon()
     {
         currentWeapon = weaponType;
+        shootCost = weaponType.shootCost;
         sprite = weaponType.sprite;
         knockback = weaponType.knockback;
         bullet = weaponType.bulletType.GetComponent<Bullet>();
