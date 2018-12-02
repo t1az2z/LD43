@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         hp -= damage;
+        animator.SetTrigger("Damage");
         if (hp <= 0)
         {
             EnemyDeath();

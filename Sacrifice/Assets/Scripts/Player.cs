@@ -155,9 +155,15 @@ public class Player : MonoBehaviour {
         if (collision.collider.CompareTag("Enemy"))
         {
             TakeDamage(collision);
+            animator.SetTrigger("Damage");
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Destructible"))
+            rb.gravityScale = 0;
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {

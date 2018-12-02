@@ -38,7 +38,7 @@ public class Bullet : MonoBehaviour {
         if (destroyonCollision)
         {
             //Instantiate particles
-            Destroy(gameObject);
+            Destroy(gameObject, .02f);
         }
         else
         {
