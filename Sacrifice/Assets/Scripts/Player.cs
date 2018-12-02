@@ -167,7 +167,7 @@ public class Player : MonoBehaviour {
 
     private void TakeDamage(Collision2D collision)
     {
-        hp -= collision.gameObject.GetComponent<Enemy>().damage;
+        hp -= collision.gameObject.transform.parent.GetComponent<Enemy>().damage;
 
         //animation play take damage
         //sound play takedamage

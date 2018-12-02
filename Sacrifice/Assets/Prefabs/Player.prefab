@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 95962493418212308}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,6 +177,7 @@ MonoBehaviour:
   maxHP: 10
   hp: 10
   ammoPrice: 1
+  isDead: 0
   animator: {fileID: 0}
 --- !u!114 &114780260219076180
 MonoBehaviour:
@@ -190,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpawner: {fileID: 1069661525476514}
-  weaponType: {fileID: 11400000, guid: a1e29870e1e340443805530d912ad10d, type: 2}
+  weaponType: {fileID: 11400000, guid: 0e4a772720a92a94284ca5c9f2b91e57, type: 2}
   knockback: 1
   dispersion: 0
   shootCost: 2

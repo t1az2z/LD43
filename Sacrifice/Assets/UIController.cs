@@ -7,6 +7,7 @@ using TMPro;
 public class UIController : MonoBehaviour {
 
     public Image healthBar;
+    public Image ammoBar;
     public TextMeshProUGUI healthText;
     float maxHealth;
     float health;
@@ -14,6 +15,8 @@ public class UIController : MonoBehaviour {
     public TextMeshProUGUI ammoText;
     float ammo;
     float maxAmmo;
+
+    public Image weapon;
 
 
 
@@ -29,16 +32,21 @@ public class UIController : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-
         UpdatehealthBar();
         UpdateAmmo();
+
+        weapon.sprite = GameManager.Instance.player.weapon.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void UpdateAmmo()
     {
         maxAmmo = GameManager.Instance.player.maxAmmo;
         ammo = GameManager.Instance.player.ammo;
+        ammoBar.fillAmount = ammo / maxAmmo;
+
         ammoText.text = ammo + "/" + maxAmmo;
+
+
     }
     private void UpdatehealthBar()
     {

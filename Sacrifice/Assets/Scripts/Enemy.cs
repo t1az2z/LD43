@@ -13,11 +13,12 @@ public class Enemy : MonoBehaviour {
     public Player player;
     public float speed;
     int current = 0;
-    AIDestinationSetter AIdesset;
-    AILerp ailerp;
+    public AIDestinationSetter AIdesset;
+    public AILerp ailerp;
     bool alive = true;
-    private SpriteRenderer sr;
-    
+    public SpriteRenderer sr;
+    public float agroRadius;
+    Animator animator;
 
 
     private void Start()
@@ -29,14 +30,18 @@ public class Enemy : MonoBehaviour {
         ailerp = transform.parent.GetComponent<AILerp>();
         ailerp.speed = speed;
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+
+        ailerp.enabled = false;
     }
 
     private void Update()
     {
-        if (player.transform.position.x > transform.position.x)
-            sr.flipX = true;
-        else
-            sr.flipX = false;
+
+         if (Physics2D.OverlapCircle(transform.position, agroRadius,11))
+        {
+            animator.SetTrigger("Agro");
+        }
 
     }
 
@@ -51,12 +56,19 @@ public class Enemy : MonoBehaviour {
 
     private void EnemyDeath()
     {
-        alive = false;
+        animator.SetTrigger("Dead");
+        /*alive = false;
         AIdesset.enabled = false;
         ailerp.enabled = false;
         //Play sound and animation.
         player.AddHp(hpToRestore);
-        collider.enabled = false;
+        collider.enabled = false;*/
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            animator.SetTrigger("Attack");
     }
 
 
