@@ -22,3 +22,4 @@ MonoBehaviour:
   bulletParticles: {fileID: 0}
   destroyProjectileOnCollision: 1
   dispersion: 15
+  shootSoundName: Gun

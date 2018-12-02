@@ -22,3 +22,4 @@ MonoBehaviour:
   bulletParticles: {fileID: 0}
   destroyProjectileOnCollision: 0
   dispersion: 0
+  shootSoundName: Crossbow

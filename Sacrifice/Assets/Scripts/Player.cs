@@ -46,9 +46,17 @@ public class Player : MonoBehaviour {
         {
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             if (moveInput != Vector2.zero)
+            {
                 animator.SetBool("isWalking", true);
+                if (!AudioManager.instance.IsPlaying("PlayerWalk"))
+                    AudioManager.instance.Play("PlayerWalk");
+            }
             else
+            {
                 animator.SetBool("isWalking", false);
+                AudioManager.instance.Play("PlayerWalk");
+            }
+
             mousePosition = (new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0) - transform.position);
 
             if (Input.GetMouseButtonDown(0))
@@ -148,6 +156,7 @@ public class Player : MonoBehaviour {
         moveVelocity = moveInput.normalized * speed * externalForcesFactor;
         //rb.MovePosition(rb.position + moveVelocity * Time.fixedDeltaTime);
         rb.velocity = moveVelocity;
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

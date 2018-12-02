@@ -21,6 +21,6 @@ public class WeaponType : ScriptableObject {
     public bool destroyProjectileOnCollision = true;
 
     public float dispersion;
-    public Sound sootSound;
+    public string shootSoundName;
 
 }

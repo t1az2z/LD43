@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour {
     float rateOfFire;
     public float dispersion;
     [HideInInspector]public int shootCost;
+    string shootSound;
+    
 
 	// Use this for initialization
 
@@ -36,7 +38,10 @@ public class Weapon : MonoBehaviour {
         rb.velocity = direction * currentWeapon.bulletSpeed;
         currentBullet.damage = currentWeapon.damage;
         currentBullet.destroyonCollision = currentWeapon.destroyProjectileOnCollision;
-
+        var shotSound = AudioManager.instance.FindClipByName(shootSound);
+        shotSound.volume = Random.Range(.8f, 1f);
+        shotSound.pitch = Random.Range(.95f, 1f);
+        shotSound.Play();
     }
 
     public void InitializeWeapon(WeaponType wpn)
@@ -47,5 +52,6 @@ public class Weapon : MonoBehaviour {
         sr.sprite = wpn.sprite;
         knockback = wpn.knockback;
         bullet = wpn.bulletType.GetComponent<Bullet>();
+        shootSound = wpn.shootSoundName;
     }
 }

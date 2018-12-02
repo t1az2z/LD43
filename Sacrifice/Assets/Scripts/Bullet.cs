@@ -25,6 +25,10 @@ public class Bullet : MonoBehaviour {
         {
             collider.GetComponent<Enemy>().TakeDamage(damage);
             Destroy(gameObject);
+            var hitSound = AudioManager.instance.FindClipByName("ZombieHit");
+            hitSound.volume = Random.Range(.4f, .6f);
+            hitSound.pitch = Random.Range(.95f, 1f);
+            hitSound.Play();
         }
         else if (collider.gameObject.CompareTag("Obstacle"))
         {
