@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour {
     public SpriteRenderer sr;
     public float agroRadius;
     Animator animator;
+    public LayerMask playerLayer;
 
 
     private void Start()
@@ -37,8 +38,7 @@ public class Enemy : MonoBehaviour {
 
     private void Update()
     {
-
-         if (Physics2D.OverlapCircle(transform.position, agroRadius,11))
+        if (Physics2D.OverlapCircle(transform.position, agroRadius, playerLayer))
         {
             animator.SetTrigger("Agro");
         }
@@ -71,5 +71,10 @@ public class Enemy : MonoBehaviour {
             animator.SetTrigger("Attack");
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, agroRadius);
+    }
 
 }

@@ -536,6 +536,11 @@ Prefab:
       propertyPath: m_Name
       value: Enemy Simple (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114421398482942912, guid: f075573ad5005a14a81e9cbbff02584d,
+        type: 2}
+      propertyPath: playerLayer.m_Bits
+      value: 2048
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f075573ad5005a14a81e9cbbff02584d, type: 2}
   m_IsPrefabAsset: 0
@@ -27315,6 +27320,14 @@ Prefab:
     - target: {fileID: 4603817995731180, guid: d2a88514f3cf3e04886481db029b3e27, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1397703417038422, guid: d2a88514f3cf3e04886481db029b3e27, type: 2}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069661525476514, guid: d2a88514f3cf3e04886481db029b3e27, type: 2}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2a88514f3cf3e04886481db029b3e27, type: 2}
