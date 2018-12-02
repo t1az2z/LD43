@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 
 public class Enemy : MonoBehaviour {
@@ -11,57 +12,31 @@ public class Enemy : MonoBehaviour {
     public Collider2D collider;
     public Player player;
     public float speed;
-    public Vector2[] path;
-    Pathfinder pf;
-    float step;
-    Vector2 oldPlayerPos;
-    Vector2 currentPlayerPos;
-    bool playerMoved;
-    public GameObject walls;
     int current = 0;
-    
+    AIDestinationSetter AIdesset;
+    AILerp ailerp;
     bool alive = true;
+    private SpriteRenderer sr;
+    
 
 
     private void Start()
     {
         player = FindObjectOfType<Player>();
         collider = GetComponent<Collider2D>();
-        pf = new Pathfinder(AINavMeshGenerator.instance);
-        step = speed * Time.deltaTime;
-        currentPlayerPos = player.transform.position;
+        AIdesset = transform.parent.GetComponent<AIDestinationSetter>();
+        AIdesset.target = player.transform;
+        ailerp = transform.parent.GetComponent<AILerp>();
+        ailerp.speed = speed;
+        sr = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
-    {    
-        if (player != null && alive)
-        {
-            path = pf.FindPath(transform.position, player.transform.position, walls);
-            if (path != null)
-            {
-                if (path.Length > 0)
-                {
-                    if (current >= path.Length)
-                        current = 0;
-                    if (Vector2.Distance(path[current], transform.position) < .1f)
-                    {
-                        current++;
-                    }
-                    if (current+1 <= path.Length)
-                    {
-                        
-                        transform.position = Vector2.MoveTowards(transform.position, path[current], Time.deltaTime * speed);
-                    }
-                    else
-                        current = 0;
-                }
-
-                /*for (var i = 1; i < path.Length; i++)
-                {
-                    Debug.DrawLine(path[i - 1], path[i]);
-                }*/
-            }            
-        }
+    {
+        if (player.transform.position.x > transform.position.x)
+            sr.flipX = true;
+        else
+            sr.flipX = false;
 
     }
 
@@ -77,6 +52,8 @@ public class Enemy : MonoBehaviour {
     private void EnemyDeath()
     {
         alive = false;
+        AIdesset.enabled = false;
+        ailerp.enabled = false;
         //Play sound and animation.
         player.AddHp(hpToRestore);
         collider.enabled = false;

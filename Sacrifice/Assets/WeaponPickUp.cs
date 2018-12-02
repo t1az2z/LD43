@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class WeaponPickUp : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    WeaponType[] weapons;
+    WeaponType weapon;
+
+    private void Awake()
+    {
+        weapon = weapons[Random.Range(0, weapons.Length)];
+    }
 }
