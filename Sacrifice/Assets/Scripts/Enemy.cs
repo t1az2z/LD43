@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour {
     Vector2 currentPlayerPos;
     bool playerMoved;
     public GameObject walls;
+    int current = 0;
+    
+    bool alive = true;
 
 
     private void Start()
@@ -30,25 +33,34 @@ public class Enemy : MonoBehaviour {
     }
 
     private void Update()
-    {
-
-        if (player != null)
+    {    
+        if (player != null && alive)
         {
             path = pf.FindPath(transform.position, player.transform.position, walls);
             if (path != null)
             {
-                for (var i = 1; i < path.Length; i++)
+                if (path.Length > 0)
+                {
+                    if (current >= path.Length)
+                        current = 0;
+                    if (Vector2.Distance(path[current], transform.position) < .1f)
+                    {
+                        current++;
+                    }
+                    if (current+1 <= path.Length)
+                    {
+                        
+                        transform.position = Vector2.MoveTowards(transform.position, path[current], Time.deltaTime * speed);
+                    }
+                    else
+                        current = 0;
+                }
+
+                /*for (var i = 1; i < path.Length; i++)
                 {
                     Debug.DrawLine(path[i - 1], path[i]);
-                }
-                foreach (var point in path)
-                {
-                    if (Vector2.Distance(transform.position, point) > .01f)
-                        transform.position = Vector2.MoveTowards(transform.position, point, step);
-                    else
-                        continue;
-                }
-            }
+                }*/
+            }            
         }
 
     }
@@ -64,6 +76,7 @@ public class Enemy : MonoBehaviour {
 
     private void EnemyDeath()
     {
+        alive = false;
         //Play sound and animation.
         player.AddHp(hpToRestore);
         collider.enabled = false;
