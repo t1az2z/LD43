@@ -19,7 +19,7 @@ public class Weapon : MonoBehaviour {
 
 	void Start ()
     {
-        InitializeWeapon();
+        InitializeWeapon(weaponType);
     }
 
 
@@ -27,25 +27,25 @@ public class Weapon : MonoBehaviour {
     {
         var currentBullet = Instantiate(bullet, bulletSpawner.transform.position, transform.rotation);
         var bSr = currentBullet.gameObject.GetComponent<SpriteRenderer>();
-        bSr.sprite = weaponType.bulletSprite;
-        if (weaponType.destroyProjectileOnCollision)
+        bSr.sprite = currentWeapon.bulletSprite;
+        if (currentWeapon.destroyProjectileOnCollision)
             sr.sortingOrder += 1;
         var col = currentBullet.gameObject.AddComponent<BoxCollider2D>();
         col.isTrigger = true;
         var rb = currentBullet.GetComponent<Rigidbody2D>();
         rb.velocity = direction * currentWeapon.bulletSpeed;
-        currentBullet.damage = weaponType.damage;
-        currentBullet.destroyonCollision = weaponType.destroyProjectileOnCollision;
+        currentBullet.damage = currentWeapon.damage;
+        currentBullet.destroyonCollision = currentWeapon.destroyProjectileOnCollision;
 
     }
 
-    private void InitializeWeapon()
+    public void InitializeWeapon(WeaponType wpn)
     {
         sr = GetComponent<SpriteRenderer>();
-        currentWeapon = weaponType;
-        shootCost = weaponType.shootCost;
-        sr.sprite = weaponType.sprite;
-        knockback = weaponType.knockback;
-        bullet = weaponType.bulletType.GetComponent<Bullet>();
+        currentWeapon = wpn;
+        shootCost = wpn.shootCost;
+        sr.sprite = wpn.sprite;
+        knockback = wpn.knockback;
+        bullet = wpn.bulletType.GetComponent<Bullet>();
     }
 }

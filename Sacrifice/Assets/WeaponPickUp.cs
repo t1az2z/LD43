@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class WeaponPickUp : MonoBehaviour {
 
-    WeaponType[] weapons;
-    WeaponType weapon;
+    public WeaponType[] weapons;
+    public WeaponType weapon;
+    SpriteRenderer sr;
 
-    private void Awake()
+    private void Start()
     {
         weapon = weapons[Random.Range(0, weapons.Length)];
+        sr = GetComponent<SpriteRenderer>();
+        sr.sprite = weapon.sprite;
     }
+
+ 
 }

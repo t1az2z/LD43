@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -157,6 +158,23 @@ public class Player : MonoBehaviour {
         }
     }
 
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PickUp"))
+        {
+            //show tooltip
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                weapon.InitializeWeapon(collision.GetComponent<WeaponPickUp>().weapon);
+                ammo += 10;
+                Destroy(collision.gameObject);
+            }
+        }
+    }
+
+
+
     public void AddHp(int ammount)
     {
         if (hp + ammount <= maxHP)
@@ -167,7 +185,7 @@ public class Player : MonoBehaviour {
 
     private void TakeDamage(Collision2D collision)
     {
-        hp -= collision.gameObject.transform.parent.GetComponent<Enemy>().damage;
+        hp -= collision.gameObject.GetComponent<Enemy>().damage;
 
         //animation play take damage
         //sound play takedamage
