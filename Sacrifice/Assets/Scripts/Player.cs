@@ -93,6 +93,7 @@ public class Player : MonoBehaviour {
             rb.isKinematic = true;
             isDead = true;
             animator.SetTrigger("Death");
+            AudioManager.instance.Play("PlayerDeath");
         }
     }
 
@@ -204,6 +205,7 @@ public class Player : MonoBehaviour {
 
     private void TakeDamage(Collision2D collision)
     {
+        AudioManager.instance.Play("PlayerDamage");
         hp -= collision.transform.parent.gameObject.GetComponent<Enemy>().damage;
         if (hp <= 0)
             hp = 0;

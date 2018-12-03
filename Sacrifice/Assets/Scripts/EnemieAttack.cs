@@ -15,6 +15,13 @@ public class EnemieAttack : StateMachineBehaviour {
             enemy.sr.flipX = false;
         else
             enemy.sr.flipX = true;
+
+        if (enemy.player.isDead)
+        {
+            animator.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            animator.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            animator.Play("Zombie_Idle");
+        }
     }
 
 	// OnStateExit is called when a transition ends and the state machine finishes evaluating this state

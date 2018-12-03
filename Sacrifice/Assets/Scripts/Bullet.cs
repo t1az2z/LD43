@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour {
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+
         if (collider.gameObject.CompareTag("Enemy"))
         {
             collider.GetComponent<Enemy>().TakeDamage(damage);
