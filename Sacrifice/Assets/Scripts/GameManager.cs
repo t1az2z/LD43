@@ -34,4 +34,15 @@ public class GameManager : MonoBehaviour {
 		if (player == null)
             player = FindObjectOfType<Player>();
     }
+
+    public IEnumerator FreezeTime(float stopTime)
+    {
+        Time.timeScale = 0f;
+        float stopEndTime = Time.realtimeSinceStartup + stopTime;
+        while (Time.realtimeSinceStartup < stopEndTime)
+        {
+            yield return 0;
+        }
+        Time.timeScale = 1f;
+    }
 }

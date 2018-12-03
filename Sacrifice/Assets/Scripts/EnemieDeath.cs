@@ -7,13 +7,14 @@ public class EnemieDeath : StateMachineBehaviour {
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        GameManager.Instance.StartCoroutine(GameManager.Instance.FreezeTime(.02f));
         enemy = animator.gameObject.GetComponent<Enemy>();
         enemy.ailerp.enabled = false;
         enemy.AIdesset.enabled = false;
 
         enemy.player.AddHp(enemy.hpToRestore);
         enemy.collider.enabled = false;
-
+        enemy.alive = false;
         enemy.death.volume = Random.Range(.8f, 1f);
         enemy.death.pitch = Random.Range(.9f, 1f);
         enemy.death.Play();

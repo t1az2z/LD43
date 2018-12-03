@@ -12,6 +12,7 @@ public class EnemieChase : StateMachineBehaviour {
 
         enemy = animator.GetComponent<Enemy>();
         enemy.ailerp.enabled = true;
+        steps = animator.gameObject.GetComponent<Enemy>().steps;
     }
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -23,7 +24,7 @@ public class EnemieChase : StateMachineBehaviour {
             enemy.sr.flipX = true;
         if (!animator.gameObject.GetComponent<AudioSource>().isPlaying)
         {
-            steps = animator.gameObject.GetComponent<AudioSource>();
+
             steps.volume = Random.Range(.2f, .35f);
             steps.pitch = Random.Range(.8f, 1f);
             steps.Play();

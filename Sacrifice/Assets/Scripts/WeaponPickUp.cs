@@ -8,7 +8,7 @@ public class WeaponPickUp : MonoBehaviour {
     public WeaponType weapon;
     SpriteRenderer sr;
 
-    private void Start()
+    private void Awake()
     {
         weapon = weapons[Random.Range(0, weapons.Length)];
         sr = GetComponent<SpriteRenderer>();

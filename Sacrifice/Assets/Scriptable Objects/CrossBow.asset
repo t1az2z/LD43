@@ -14,9 +14,9 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 1a8997bda33a9da4eba21b143d7330d5, type: 3}
   knockback: 1
   bulletType: {fileID: 1427801698481598, guid: e8ccda8001b13434c8fdaf60405de3ac, type: 2}
-  rateOfFire: 0.5
+  rateOfFire: 0.3
   bulletSprite: {fileID: 21300000, guid: 776fdd89867de344e9be9cce340b809e, type: 3}
-  shootCost: 3
+  shootCost: 2
   bulletSpeed: 35
   damage: 3
   bulletParticles: {fileID: 0}

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour {
 
     public float speed;
 
+    float bleedTimePeriod = 5f;
     Rigidbody2D rb;
     private Vector2 moveVelocity;
     Vector2 moveInput;
@@ -33,6 +35,10 @@ public class Player : MonoBehaviour {
 
     public Animator animator;
 
+    public int ammoFromPickupWeapon = 3;
+
+    CinemachineImpulseSource impulse;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -41,6 +47,8 @@ public class Player : MonoBehaviour {
         shootCost = weapon.shootCost;
         oldPos = weapon.transform.localPosition;
         allowFire = true;
+        impulse = GetComponent<CinemachineImpulseSource>();
+        StartCoroutine(Bleed(bleedTimePeriod));
     }
 
     private void Update()
@@ -74,6 +82,11 @@ public class Player : MonoBehaviour {
                 {
                     AudioManager.instance.Play("OutOfAmmo");
                 }
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                //play knife audio
+                animator.SetTrigger("KnifeHit");
             }
             RotateAndFlipDependingOnMousePos(mousePosition);
         }
@@ -119,6 +132,7 @@ public class Player : MonoBehaviour {
         if (ammo < maxAmmo)
         {
             animator.SetTrigger("getAmmo");
+            impulse.GenerateImpulse();
             AudioManager.instance.Play("GetAmmo");
             if (ammo + ammoAmountToGetForPrice <= maxAmmo)
             {
@@ -174,8 +188,20 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Destructible"))
-            rb.gravityScale = 0;
+        if (collision.CompareTag("PickUp"))
+        {
+            //show tooltip
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                weapon.InitializeWeapon(collision.GetComponent<WeaponPickUp>().weapon);
+                if (ammo + ammoFromPickupWeapon <= maxAmmo)
+                    ammo += ammoFromPickupWeapon;
+                else
+                    ammo += maxAmmo - ammoFromPickupWeapon;
+                AudioManager.instance.Play("WeaponPickUp");
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -186,7 +212,10 @@ public class Player : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 weapon.InitializeWeapon(collision.GetComponent<WeaponPickUp>().weapon);
-                ammo += 5;
+                if (ammo + ammoFromPickupWeapon <= maxAmmo)
+                    ammo += ammoFromPickupWeapon;
+                else
+                    ammo += maxAmmo - ammoFromPickupWeapon;
                 AudioManager.instance.Play("WeaponPickUp");
                 Destroy(collision.gameObject);
             }
@@ -197,17 +226,24 @@ public class Player : MonoBehaviour {
 
     public void AddHp(int ammount)
     {
-        if (hp + ammount <= maxHP)
-            hp += ammount;
-        else
-            hp += maxHP - hp;
+        if (!isDead)
+        {
+            if (hp + ammount <= maxHP)
+                hp += ammount;
+            else
+                hp += maxHP - hp;
+        }
     }
 
     private void TakeDamage(Collision2D collision)
     {
+        var damage = collision.transform.parent.gameObject.GetComponent<Enemy>().damage;
         AudioManager.instance.Play("PlayerDamage");
-        hp -= collision.transform.parent.gameObject.GetComponent<Enemy>().damage;
-        if (hp <= 0)
+        impulse.GenerateImpulse();
+        GameManager.Instance.StartCoroutine(GameManager.Instance.FreezeTime(.05f));
+        if (hp - damage > 0)
+            hp -= damage;
+        else
             hp = 0;
 
         //animation play take damage
@@ -215,5 +251,23 @@ public class Player : MonoBehaviour {
         //start coroutine invulnerable
     }
 
+    private void TakeDamage(int damage)
+    {
+        AudioManager.instance.Play("PlayerDamage");
+        impulse.GenerateImpulse();
+        GameManager.Instance.StartCoroutine(GameManager.Instance.FreezeTime(.05f));
+        if (hp - damage > 0)
+            hp -= damage;
+        else
+            hp = 0;
+    }
 
+    private IEnumerator Bleed(float time)
+    {
+        while (!isDead)
+        {
+            TakeDamage(1);
+            yield return new WaitForSeconds(time);
+        }
+    }
 }

@@ -15,14 +15,18 @@ public class Enemy : MonoBehaviour {
     int current = 0;
     public AIDestinationSetter AIdesset;
     public AILerp ailerp;
-    bool alive = true;
+    public bool alive = true;
     public SpriteRenderer sr;
     public float agroRadius;
     Animator animator;
     public LayerMask playerLayer;
-    //public AudioSource hit;
+    public AudioSource steps;
     public AudioSource death;
     float rnd;
+    bool agro = false;
+    public GameObject weaponToSpawn;
+    public int weaponDropChance;
+
     private void Start()
     {
         player = FindObjectOfType<Player>();
@@ -35,15 +39,17 @@ public class Enemy : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         ailerp.enabled = false;
-        rnd = Random.Range(5, 25);
+        rnd = Random.Range(0, 100);
     }
 
     private void Update()
     {
-        if (Physics2D.OverlapCircle(transform.position, agroRadius, playerLayer))
+        if (Physics2D.OverlapCircle(transform.position, agroRadius, playerLayer) && !player.isDead && !agro)
         {
             animator.SetTrigger("Agro");
+            agro = true;
         }
+
 
     }
 
@@ -61,6 +67,8 @@ public class Enemy : MonoBehaviour {
     private void EnemyDeath()
     {
         animator.SetTrigger("Dead");
+        if (rnd >= 100-weaponDropChance)
+            Instantiate(weaponToSpawn, transform.position, Quaternion.identity);
         /*alive = false;
         AIdesset.enabled = false;
         ailerp.enabled = false;
@@ -75,11 +83,11 @@ public class Enemy : MonoBehaviour {
             animator.SetTrigger("Attack");
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    /*private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !collision.GetComponent<Player>().isDead)
             animator.SetTrigger("Attack");
-    }
+    }*/
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

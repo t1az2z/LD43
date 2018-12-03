@@ -14,13 +14,13 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: ffe46c92c46bb2e47b15d01126fd1e54, type: 3}
   knockback: 3
   bulletType: {fileID: 1427801698481598, guid: e8ccda8001b13434c8fdaf60405de3ac, type: 2}
-  rateOfFire: 0.2
+  rateOfFire: 0.1
   bulletSprite: {fileID: 21300000, guid: 2bd7c2132278e914a9a241a65e730c33, type: 3}
   shootCost: 1
   bulletSpeed: 25
   damage: 1
   bulletParticles: {fileID: 0}
   destroyProjectileOnCollision: 1
-  dispersion: 15
+  dispersion: 0.1
   shootSoundName: Gun
   ricochetSoundName: GunRic

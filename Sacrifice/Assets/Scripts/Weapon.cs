@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 [ExecuteInEditMode]
 public class Weapon : MonoBehaviour {
@@ -17,6 +18,8 @@ public class Weapon : MonoBehaviour {
     string shootSound;
     string ricochetSound;
     Player player;
+    CinemachineImpulseSource impulse;
+    public GameObject shell;
 
     
 
@@ -26,20 +29,24 @@ public class Weapon : MonoBehaviour {
     {
         InitializeWeapon(weaponType);
         player = transform.parent.GetComponent<Player>();
+        impulse = GetComponent<CinemachineImpulseSource>();
     }
 
 
     public IEnumerator Shoot(Vector2 direction)
     {
         player.allowFire = false;
+        impulse.GenerateImpulse(new Vector3(knockback/2, knockback/2, 0));
+        Instantiate(shell, transform.position, Quaternion.identity);
+        
         var currentBullet = Instantiate(bullet, bulletSpawner.transform.position, transform.rotation);
+        currentBullet.knockback = knockback;
         var bSr = currentBullet.gameObject.GetComponent<SpriteRenderer>();
         bSr.sprite = currentWeapon.bulletSprite;
         if (currentWeapon.destroyProjectileOnCollision)
-            sr.sortingOrder += 1;
-        var col = currentBullet.gameObject.AddComponent<BoxCollider2D>();
-        col.isTrigger = true;
+            bSr.sortingOrder += 1;
         var rb = currentBullet.GetComponent<Rigidbody2D>();
+        direction = new Vector2(direction.x + Random.Range(-dispersion, dispersion), direction.y + Random.Range(-dispersion, dispersion)).normalized;
         rb.velocity = direction * currentWeapon.bulletSpeed;
         currentBullet.damage = currentWeapon.damage;
         currentBullet.destroyonCollision = currentWeapon.destroyProjectileOnCollision;
@@ -64,6 +71,7 @@ public class Weapon : MonoBehaviour {
         shootSound = wpn.shootSoundName;
         ricochetSound = wpn.ricochetSoundName;
         rateOfFire = wpn.rateOfFire;
+        dispersion = wpn.dispersion;
 
     }
 }
