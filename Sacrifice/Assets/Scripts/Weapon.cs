@@ -15,6 +15,9 @@ public class Weapon : MonoBehaviour {
     public float dispersion;
     [HideInInspector]public int shootCost;
     string shootSound;
+    string ricochetSound;
+    Player player;
+
     
 
 	// Use this for initialization
@@ -22,11 +25,13 @@ public class Weapon : MonoBehaviour {
 	void Start ()
     {
         InitializeWeapon(weaponType);
+        player = transform.parent.GetComponent<Player>();
     }
 
 
-    public void Shoot(Vector2 direction)
+    public IEnumerator Shoot(Vector2 direction)
     {
+        player.allowFire = false;
         var currentBullet = Instantiate(bullet, bulletSpawner.transform.position, transform.rotation);
         var bSr = currentBullet.gameObject.GetComponent<SpriteRenderer>();
         bSr.sprite = currentWeapon.bulletSprite;
@@ -38,10 +43,14 @@ public class Weapon : MonoBehaviour {
         rb.velocity = direction * currentWeapon.bulletSpeed;
         currentBullet.damage = currentWeapon.damage;
         currentBullet.destroyonCollision = currentWeapon.destroyProjectileOnCollision;
+        currentBullet.ricSoundName = ricochetSound;
         var shotSound = AudioManager.instance.FindClipByName(shootSound);
         shotSound.volume = Random.Range(.8f, 1f);
         shotSound.pitch = Random.Range(.95f, 1f);
         shotSound.Play();
+        yield return new WaitForSeconds(rateOfFire);
+        player.allowFire = true;
+
     }
 
     public void InitializeWeapon(WeaponType wpn)
@@ -53,5 +62,8 @@ public class Weapon : MonoBehaviour {
         knockback = wpn.knockback;
         bullet = wpn.bulletType.GetComponent<Bullet>();
         shootSound = wpn.shootSoundName;
+        ricochetSound = wpn.ricochetSoundName;
+        rateOfFire = wpn.rateOfFire;
+
     }
 }

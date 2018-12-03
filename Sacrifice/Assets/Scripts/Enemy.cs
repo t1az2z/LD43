@@ -20,8 +20,9 @@ public class Enemy : MonoBehaviour {
     public float agroRadius;
     Animator animator;
     public LayerMask playerLayer;
-
-
+    //public AudioSource hit;
+    public AudioSource death;
+    float rnd;
     private void Start()
     {
         player = FindObjectOfType<Player>();
@@ -34,6 +35,7 @@ public class Enemy : MonoBehaviour {
         animator = GetComponent<Animator>();
 
         ailerp.enabled = false;
+        rnd = Random.Range(5, 25);
     }
 
     private void Update()
@@ -44,6 +46,7 @@ public class Enemy : MonoBehaviour {
         }
 
     }
+
 
     public void TakeDamage(int damage)
     {
@@ -72,6 +75,11 @@ public class Enemy : MonoBehaviour {
             animator.SetTrigger("Attack");
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+            animator.SetTrigger("Attack");
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

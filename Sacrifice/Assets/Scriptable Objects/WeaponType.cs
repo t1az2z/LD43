@@ -22,5 +22,6 @@ public class WeaponType : ScriptableObject {
 
     public float dispersion;
     public string shootSoundName;
+    public string ricochetSoundName;
 
 }

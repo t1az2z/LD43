@@ -13,6 +13,10 @@ public class EnemieDeath : StateMachineBehaviour {
 
         enemy.player.AddHp(enemy.hpToRestore);
         enemy.collider.enabled = false;
+
+        enemy.death.volume = Random.Range(.8f, 1f);
+        enemy.death.pitch = Random.Range(.9f, 1f);
+        enemy.death.Play();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

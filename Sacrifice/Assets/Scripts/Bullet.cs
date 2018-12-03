@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour {
     Collider2D col;
     Rigidbody2D rb;
     SpriteRenderer sr;
+    public string ricSoundName; 
 
     private void Update()
     {
@@ -32,7 +33,7 @@ public class Bullet : MonoBehaviour {
         }
         else if (collider.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Obstacle hit");
+            AudioManager.instance.Play(ricSoundName);
         }
         else if (collider.gameObject.CompareTag("Destructible"))
         {

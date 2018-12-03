@@ -29,6 +29,8 @@ public class Player : MonoBehaviour {
     SpriteRenderer sr;
     public bool isDead = false;
 
+    public bool allowFire;
+
     public Animator animator;
 
     // Use this for initialization
@@ -38,6 +40,7 @@ public class Player : MonoBehaviour {
         animator = GetComponent<Animator>();
         shootCost = weapon.shootCost;
         oldPos = weapon.transform.localPosition;
+        allowFire = true;
     }
 
     private void Update()
@@ -61,11 +64,15 @@ public class Player : MonoBehaviour {
 
             if (Input.GetMouseButtonDown(0))
             {
-                if (ammo - shootCost >= 0)
+                if (ammo - shootCost >= 0 && allowFire)
                 {
-                    weapon.Shoot(mousePosition.normalized);
+                    StartCoroutine(weapon.Shoot(mousePosition.normalized));
                     StartCoroutine(Knockback(mousePosition, weapon.knockback, .15f));
                     ammo -= shootCost;
+                }
+                else if (ammo - shootCost < 0)
+                {
+                    AudioManager.instance.Play("OutOfAmmo");
                 }
             }
             RotateAndFlipDependingOnMousePos(mousePosition);
@@ -76,15 +83,10 @@ public class Player : MonoBehaviour {
             mousePosition = Vector2.zero;
         }
 
-
         if (Input.GetButtonDown("Jump"))
         {
             GetAmmo();
         }
-
-
-
-
 
         if (hp <= 0)
         {
@@ -116,6 +118,7 @@ public class Player : MonoBehaviour {
         if (ammo < maxAmmo)
         {
             animator.SetTrigger("getAmmo");
+            AudioManager.instance.Play("GetAmmo");
             if (ammo + ammoAmountToGetForPrice <= maxAmmo)
             {
                 hp -= ammoPrice;
@@ -182,7 +185,8 @@ public class Player : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 weapon.InitializeWeapon(collision.GetComponent<WeaponPickUp>().weapon);
-                ammo += 10;
+                ammo += 5;
+                AudioManager.instance.Play("WeaponPickUp");
                 Destroy(collision.gameObject);
             }
         }
@@ -200,7 +204,9 @@ public class Player : MonoBehaviour {
 
     private void TakeDamage(Collision2D collision)
     {
-        hp -= collision.gameObject.GetComponent<Enemy>().damage;
+        hp -= collision.transform.parent.gameObject.GetComponent<Enemy>().damage;
+        if (hp <= 0)
+            hp = 0;
 
         //animation play take damage
         //sound play takedamage
