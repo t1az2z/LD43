@@ -68,6 +68,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4946599652337584}
   - component: {fileID: 95326798231463372}
+  - component: {fileID: 61869206795358090}
+  - component: {fileID: 114071582799883778}
   m_Layer: 0
   m_Name: GatesParent
   m_TagString: Untagged
@@ -85,6 +87,7 @@ GameObject:
   - component: {fileID: 4257038129059700}
   - component: {fileID: 114169136947933306}
   - component: {fileID: 58367076741109174}
+  - component: {fileID: 61623147738404548}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -114,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1965809407934404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.4, y: -5.39, z: -0.21271071}
+  m_LocalPosition: {x: -20.26, y: -1.04, z: -0.21271071}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4946599652337584}
@@ -153,7 +156,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1755571950263910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21.04, y: 14.43, z: 0.18046133}
+  m_LocalPosition: {x: 7.99, y: 6.602, z: 0.18046133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4257038129059700}
@@ -175,7 +178,32 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 4.6600904
+  m_Radius: 4.4591856
+--- !u!61 &61623147738404548
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1965809407934404}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 8.196682, y: -2.5202436}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.2611618, y: 5.1925526}
+  m_EdgeRadius: 0
 --- !u!61 &61683482867301836
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -201,6 +229,31 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9901314, y: 1.2694473}
   m_EdgeRadius: 0
+--- !u!61 &61869206795358090
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1755571950263910}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06196952, y: 1.3943229}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9295497, y: 0.75212}
+  m_EdgeRadius: 0
 --- !u!95 &95326798231463372
 Animator:
   serializedVersion: 3
@@ -219,6 +272,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114071582799883778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1755571950263910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a381ce837f8017048aadb25382d67f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114169136947933306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,8 +298,8 @@ MonoBehaviour:
     type: 2}
   gates: {fileID: 1755571950263910}
   timeDelay: 3
-  numberOfEnemiesToSpawn: 3
-  numberOfWaves: 3
+  numberOfEnemiesToSpawn: 4
+  numberOfWaves: 8
   onGates: 1
 --- !u!212 &212702315811005948
 SpriteRenderer:

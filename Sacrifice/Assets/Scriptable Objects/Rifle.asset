@@ -24,3 +24,4 @@ MonoBehaviour:
   dispersion: 0.1
   shootSoundName: Gun
   ricochetSoundName: GunRic
+  maxAmmo: 20

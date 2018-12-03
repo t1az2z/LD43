@@ -24,4 +24,6 @@ public class WeaponType : ScriptableObject {
     public string shootSoundName;
     public string ricochetSoundName;
 
+    public int maxAmmo;
+
 }

@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
     private Vector3 mousePosition;
 
     public Weapon weapon;
-    private int shootCost;
+    public int shootCost;
     public int ammo;
     public int maxAmmo;
     public int ammoAmountToGetForPrice = 10;
@@ -44,7 +44,10 @@ public class Player : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
-        shootCost = weapon.shootCost;
+
+        maxAmmo = weapon.maxAmmo;
+        if (ammo > maxAmmo)
+            ammo = maxAmmo;
         oldPos = weapon.transform.localPosition;
         allowFire = true;
         impulse = GetComponent<CinemachineImpulseSource>();
@@ -53,6 +56,7 @@ public class Player : MonoBehaviour {
 
     private void Update()
     {
+        shootCost = weapon.shootCost;
         if (!isDead)
         {
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -194,6 +198,10 @@ public class Player : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 weapon.InitializeWeapon(collision.GetComponent<WeaponPickUp>().weapon);
+                shootCost = weapon.shootCost;
+                maxAmmo = weapon.maxAmmo;
+                if (ammo > maxAmmo)
+                    ammo = maxAmmo;
                 if (ammo + ammoFromPickupWeapon <= maxAmmo)
                     ammo += ammoFromPickupWeapon;
                 else
@@ -266,8 +274,8 @@ public class Player : MonoBehaviour {
     {
         while (!isDead)
         {
-            TakeDamage(1);
             yield return new WaitForSeconds(time);
+            TakeDamage(1);
         }
     }
 }

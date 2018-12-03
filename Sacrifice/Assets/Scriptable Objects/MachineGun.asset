@@ -9,19 +9,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5aebb5eff090bc84a93e8e5811ccde0a, type: 3}
-  m_Name: CrossBow
+  m_Name: MachineGun
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 1a8997bda33a9da4eba21b143d7330d5, type: 3}
-  knockback: 1
+  sprite: {fileID: 21300000, guid: cc0c6a1626f09964e8166e929ba76256, type: 3}
+  knockback: 4
   bulletType: {fileID: 1427801698481598, guid: e8ccda8001b13434c8fdaf60405de3ac, type: 2}
-  rateOfFire: 0.3
-  bulletSprite: {fileID: 21300000, guid: 776fdd89867de344e9be9cce340b809e, type: 3}
-  shootCost: 2
-  bulletSpeed: 35
-  damage: 3
+  rateOfFire: 0.01
+  bulletSprite: {fileID: 21300000, guid: 2bd7c2132278e914a9a241a65e730c33, type: 3}
+  shootCost: 1
+  bulletSpeed: 30
+  damage: 1
   bulletParticles: {fileID: 0}
-  destroyProjectileOnCollision: 0
-  dispersion: 0
-  shootSoundName: Crossbow
-  ricochetSoundName: ArrowRic
-  maxAmmo: 15
+  destroyProjectileOnCollision: 1
+  dispersion: 0.2
+  shootSoundName: Gun
+  ricochetSoundName: GunRic
+  maxAmmo: 40

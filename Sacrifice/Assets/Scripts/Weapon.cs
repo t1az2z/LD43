@@ -20,18 +20,23 @@ public class Weapon : MonoBehaviour {
     Player player;
     CinemachineImpulseSource impulse;
     public GameObject shell;
+    public int maxAmmo;
 
     
 
 	// Use this for initialization
 
-	void Start ()
+	void Awake ()
     {
-        InitializeWeapon(weaponType);
+
+
+    }
+    private void Start()
+    {
         player = transform.parent.GetComponent<Player>();
+        InitializeWeapon(weaponType);
         impulse = GetComponent<CinemachineImpulseSource>();
     }
-
 
     public IEnumerator Shoot(Vector2 direction)
     {
@@ -65,6 +70,7 @@ public class Weapon : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
         currentWeapon = wpn;
         shootCost = wpn.shootCost;
+        player.shootCost = shootCost;
         sr.sprite = wpn.sprite;
         knockback = wpn.knockback;
         bullet = wpn.bulletType.GetComponent<Bullet>();
@@ -72,6 +78,7 @@ public class Weapon : MonoBehaviour {
         ricochetSound = wpn.ricochetSoundName;
         rateOfFire = wpn.rateOfFire;
         dispersion = wpn.dispersion;
+        maxAmmo = wpn.maxAmmo;
 
     }
 }
