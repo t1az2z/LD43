@@ -1,0 +1,166 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1188064039493154}
+  m_IsPrefabAsset: 1
+--- !u!1 &1188064039493154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4048124561946324}
+  - component: {fileID: 114408653306131386}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4048124561946324
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188064039493154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.9389821, y: 5.5185666, z: -0.17578125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114408653306131386
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1188064039493154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e8939ab5c6d3a4faaba20a54f48559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Crossbow
+    clip: {fileID: 8300000, guid: da6b1485fd59d414c87f76ebb4eaff69, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Gun
+    clip: {fileID: 8300000, guid: c7cb6af183da0274fb598fdc4fe36054, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: PlayerWalk
+    clip: {fileID: 8300000, guid: e3d72eebb41f18f43bbda547f8eee8b6, type: 3}
+    volume: 0.313
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: ZombieSteps
+    clip: {fileID: 8300000, guid: 3572d8277a240cf47be0b516bf687f6d, type: 3}
+    volume: 0.313
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: ZombieHit
+    clip: {fileID: 8300000, guid: c1edba10f8c3d504599bbe3fac19daf2, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: OutOfAmmo
+    clip: {fileID: 8300000, guid: 9760799dd4a83a9479ef811ae8e52a75, type: 3}
+    volume: 0.804
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: WeaponPickUp
+    clip: {fileID: 8300000, guid: 7ee15f248a6a67e4eadff9687e51b285, type: 3}
+    volume: 0.804
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: ArrowRic
+    clip: {fileID: 8300000, guid: dbefa912aec6be849a841326edbcbbeb, type: 3}
+    volume: 0.596
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: GunRic
+    clip: {fileID: 8300000, guid: bec55352e322bb34eafae9214f85dd56, type: 3}
+    volume: 0.648
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: GetAmmo
+    clip: {fileID: 8300000, guid: ea11f49db20932847b25cc2230ced78e, type: 3}
+    volume: 0.648
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: PlayerDamage
+    clip: {fileID: 8300000, guid: 8825a83ef2f078d4291440f4736f1cdf, type: 3}
+    volume: 0.706
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: Theme
+    clip: {fileID: 8300000, guid: 79886a520acf3fc4b861dd3e7243eec1, type: 3}
+    volume: 0.423
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: PlayerDeath
+    clip: {fileID: 8300000, guid: 88a769ff22aa0444e8481c0aff5ab8c6, type: 3}
+    volume: 0.423
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: MenuTheme
+    clip: {fileID: 8300000, guid: ca46b80ecc57f2e4eb7414e5e7c49a04, type: 3}
+    volume: 0.276
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: UIHower
+    clip: {fileID: 8300000, guid: 8a5dcc9073301fa4d90ed740bd3ccfa7, type: 3}
+    volume: 0.423
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: ButtonPress
+    clip: {fileID: 8300000, guid: d82eeace3f7b52549983f78098352c95, type: 3}
+    volume: 0.543
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    isPlaying: 0
