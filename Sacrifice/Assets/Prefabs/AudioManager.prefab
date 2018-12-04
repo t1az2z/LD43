@@ -164,3 +164,17 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     isPlaying: 0
+  - name: Intro
+    clip: {fileID: 8300000, guid: 2199981f5276d0c48b1ad400b2bd87b3, type: 3}
+    volume: 0.543
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isPlaying: 0
+  - name: EndEffect
+    clip: {fileID: 8300000, guid: 2c725a4afbab0e84492e70dc4c076aae, type: 3}
+    volume: 0.543
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    isPlaying: 0

@@ -7,11 +7,13 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
     public Player player;
+    public UIController ui;
 
     private void Awake()
     {
         SingletonImplementation();
         player = FindObjectOfType<Player>();
+        ui = FindObjectOfType<UIController>();
     }
 
     void Start () {
@@ -36,8 +38,20 @@ public class GameManager : MonoBehaviour {
     void Update () {
 		if (player == null)
             player = FindObjectOfType<Player>();
-    }
 
+        if (player.isDead)
+        {
+            AudioManager.instance.Stop("ZombieSteps");
+            AudioManager.instance.Stop("ZombieHit");
+            
+        }
+        if (ui == null)
+            ui = FindObjectOfType<UIController>();
+    }
+    public void LoadScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
     public IEnumerator FreezeTime(float stopTime)
     {
         Time.timeScale = 0f;

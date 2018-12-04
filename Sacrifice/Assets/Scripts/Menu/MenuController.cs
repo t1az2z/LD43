@@ -16,7 +16,11 @@ public class MenuController : MonoBehaviour {
 	public void LoadLevel(int levelNumber)
     {
         if (SceneManager.GetSceneByBuildIndex(levelNumber) != null)
+        {
             SceneManager.LoadScene(levelNumber);
+            AudioManager.instance.Stop("MenuTheme");
+            AudioManager.instance.Play("Intro");
+        }
         else
             Debug.Log("no such index in build");
     }

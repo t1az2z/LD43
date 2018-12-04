@@ -56,7 +56,12 @@ public class Player : MonoBehaviour {
 
     private void Update()
     {
+
         shootCost = weapon.shootCost;
+        maxAmmo = weapon.maxAmmo;
+        if (ammo > maxAmmo)
+            ammo = maxAmmo;
+
         if (!isDead)
         {
             moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -133,26 +138,20 @@ public class Player : MonoBehaviour {
 
     void GetAmmo()
     {
-        if (ammo < maxAmmo)
+        if (ammo + ammoAmountToGetForPrice <= maxAmmo)
         {
-            animator.SetTrigger("getAmmo");
-            impulse.GenerateImpulse();
-            AudioManager.instance.Play("GetAmmo");
-            if (ammo + ammoAmountToGetForPrice <= maxAmmo)
-            {
-                hp -= ammoPrice;
-                ammo += ammoAmountToGetForPrice;
-            }
-            else
-            {
-                hp -= ammoPrice;
-                ammo += maxAmmo - ammo;
-            }
+            TakeDamage(ammoPrice);
+            ammo += ammoAmountToGetForPrice;
         }
         else
         {
-            //indicate max ammo
+            TakeDamage(ammoPrice);
+            ammo += maxAmmo - ammo;
         }
+        animator.SetTrigger("getAmmo");
+        impulse.GenerateImpulse();
+        AudioManager.instance.Play("GetAmmo");
+  
     }
     void RotateAndFlipDependingOnMousePos(Vector3 mousePos)
     {
@@ -194,9 +193,10 @@ public class Player : MonoBehaviour {
     {
         if (collision.CompareTag("PickUp"))
         {
-            //show tooltip
+            GameManager.Instance.ui.textAnim.SetBool("ShowTooltip", true);
             if (Input.GetKeyDown(KeyCode.E))
             {
+                GameManager.Instance.ui.textAnim.SetBool("ShowTooltip", false);
                 weapon.InitializeWeapon(collision.GetComponent<WeaponPickUp>().weapon);
                 shootCost = weapon.shootCost;
                 maxAmmo = weapon.maxAmmo;
@@ -219,7 +219,10 @@ public class Player : MonoBehaviour {
             //show tooltip
             if (Input.GetKeyDown(KeyCode.E))
             {
+                GameManager.Instance.ui.textAnim.SetBool("ShowTooltip", false);
                 weapon.InitializeWeapon(collision.GetComponent<WeaponPickUp>().weapon);
+                if (ammo > maxAmmo)
+                    ammo = maxAmmo;
                 if (ammo + ammoFromPickupWeapon <= maxAmmo)
                     ammo += ammoFromPickupWeapon;
                 else
@@ -230,10 +233,16 @@ public class Player : MonoBehaviour {
         }
     }
 
-
-
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("PickUp"))
+        {
+            GameManager.Instance.ui.textAnim.SetBool("ShowTooltip", false);
+        }
+    }
     public void AddHp(int ammount)
     {
+        GameManager.Instance.ui.heal.Play("UITakeDamage");
         if (!isDead)
         {
             if (hp + ammount <= maxHP)
@@ -264,6 +273,7 @@ public class Player : MonoBehaviour {
         AudioManager.instance.Play("PlayerDamage");
         impulse.GenerateImpulse();
         GameManager.Instance.StartCoroutine(GameManager.Instance.FreezeTime(.05f));
+        GameManager.Instance.ui.damage.Play("UITakeDamage");
         if (hp - damage > 0)
             hp -= damage;
         else

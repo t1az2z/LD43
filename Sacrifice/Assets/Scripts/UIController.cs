@@ -12,12 +12,19 @@ public class UIController : MonoBehaviour {
     float maxHealth;
     float health;
 
+    public CanvasGroup deathScreen;
+    public CanvasGroup button;
+
+
     public TextMeshProUGUI ammoText;
     float ammo;
     float maxAmmo;
 
     public Image weapon;
+    public Animator textAnim;
 
+    public Animator damage;
+    public Animator heal;
 
 
     // Use this for initialization
@@ -27,6 +34,7 @@ public class UIController : MonoBehaviour {
 
         maxAmmo = GameManager.Instance.player.maxAmmo;
         ammo = GameManager.Instance.player.ammo;
+
     }
 	
 	// Update is called once per frame
@@ -36,6 +44,21 @@ public class UIController : MonoBehaviour {
         UpdateAmmo();
 
         weapon.sprite = GameManager.Instance.player.weapon.GetComponent<SpriteRenderer>().sprite;
+
+        if (GameManager.Instance.player.isDead)
+        {
+            deathScreen.alpha = 1;
+            deathScreen.blocksRaycasts = true;
+            button.alpha = 1;
+            button.blocksRaycasts = true;
+        }
+        else
+        {
+            deathScreen.alpha = 0f;
+            deathScreen.blocksRaycasts = false;
+            button.alpha = 0f;
+            button.blocksRaycasts = false;
+        }
     }
 
     private void UpdateAmmo()

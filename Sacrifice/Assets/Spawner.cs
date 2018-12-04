@@ -11,19 +11,25 @@ public class Spawner : MonoBehaviour {
     bool isSpawning = false;
     bool finished = false;
     public bool onGates = false;
+    public bool open = false;
+    public bool ending = false;
+    public int number;
     
 	void Start () {
         spawnRadius = GetComponent<CircleCollider2D>().radius;
+        number = numberOfEnemiesToSpawn * numberOfWaves;
     }
     private void Update()
     {
         if (finished && onGates)
         {
-            bool open = false;
-            foreach (Transform child in transform)
+            open = false;
+            /*foreach (Transform child in transform)
             {
                 open = !child.transform.GetChild(0).GetComponent<Enemy>().alive;
-            }
+            }*/
+            if (number == 0)
+                open = true;
 
             if (open)
                 if (gates != null)
@@ -31,10 +37,19 @@ public class Spawner : MonoBehaviour {
                     gates.GetComponent<Animator>().SetTrigger("Open");
                 }
         }
+        else if (finished && ending)
+        {
+            open = false;
+            foreach (Transform child in transform)
+            {
+                open = !child.transform.GetChild(0).GetComponent<Enemy>().alive;
+            }
+        }
     }
     private IEnumerator SpawnEnemy()
     {
         isSpawning = true;
+        
         for (int i = 0; i < numberOfWaves; i++)
         {
             for (int x = 0; x < numberOfEnemiesToSpawn; x++)

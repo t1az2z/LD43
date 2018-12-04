@@ -33,7 +33,9 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Play("MenuTheme");
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            Play("MenuTheme");
+
     }
 
     public void Play(string name)
@@ -56,6 +58,14 @@ public class AudioManager : MonoBehaviour
         }
         return s.source;
 
+    }
+
+    public void StopAll()
+    {
+        foreach (Sound s in sounds)
+        {
+            s.source.Stop();
+        }
     }
 
     public void Stop(string sound)
