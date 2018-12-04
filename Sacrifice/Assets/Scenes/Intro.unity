@@ -679,6 +679,7 @@ MonoBehaviour:
   anim: {fileID: 1596810947}
   bButton: {fileID: 0}
   gButton: {fileID: 0}
+  skipButton: {fileID: 0}
 --- !u!4 &834056721
 Transform:
   m_ObjectHideFlags: 0
@@ -749,8 +750,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.105882354}
-    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.13333334}
+    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.69803923}
+    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.69803923}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -793,7 +794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.15294118}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1028,8 +1029,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.105882354}
-    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.13333334}
+    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.69803923}
+    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.69803923}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1072,7 +1073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.14117648}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

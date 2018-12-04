@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: MachineGun
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: cc0c6a1626f09964e8166e929ba76256, type: 3}
-  knockback: 4
+  knockback: 2
   bulletType: {fileID: 1427801698481598, guid: e8ccda8001b13434c8fdaf60405de3ac, type: 2}
   rateOfFire: 0.01
   bulletSprite: {fileID: 21300000, guid: 2bd7c2132278e914a9a241a65e730c33, type: 3}

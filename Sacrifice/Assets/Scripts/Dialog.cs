@@ -15,6 +15,8 @@ public class Dialog : MonoBehaviour {
 
     public GameObject bButton;
     public GameObject gButton;
+    public GameObject skipButton;
+
     private void Start()
     {
         StartCoroutine(Type());
@@ -25,7 +27,8 @@ public class Dialog : MonoBehaviour {
     {
         if (textDisplay.text == sentences[index])
         {
-            cButton.SetActive(true);
+            if (cButton != null)
+                cButton.SetActive(true);
         }
 
     }
@@ -40,7 +43,8 @@ public class Dialog : MonoBehaviour {
 
     public void nextSentenceOutro()
     {
-        cButton.SetActive(false);
+        if (cButton != null)
+            cButton.SetActive(false);
         
         if (index < sentences.Length - 1)
         {
@@ -53,13 +57,16 @@ public class Dialog : MonoBehaviour {
             {
                 bButton.SetActive(true);
                 gButton.SetActive(true);
+                Destroy(cButton);
+                Destroy(skipButton);
+
             }
             if (index == 15)
             {
 
                 bButton.SetActive(false);
                 gButton.SetActive(false);
-                cButton.SetActive(false);
+                SceneManager.LoadScene(0);
             }
         }
         else
@@ -98,13 +105,21 @@ public class Dialog : MonoBehaviour {
         SceneManager.LoadScene(0);
     }
 
+    IEnumerator LoadMenuAfterDelay()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(0);
+    }
     public void Bad()
     {
         bButton.SetActive(false);
         gButton.SetActive(false);
-        cButton.SetActive(false);
+        AudioManager.instance.Play("ButtonPress");
         anim.Play("Intro_Bad");
-        nextSentenceOutro();
+        index = 15;
+        textDisplay.text = "";
+        StartCoroutine(Type());
+        StartCoroutine(LoadMenuAfterDelay());
 
     }
 
@@ -112,9 +127,12 @@ public class Dialog : MonoBehaviour {
     {
         bButton.SetActive(false);
         gButton.SetActive(false);
-        cButton.SetActive(false);
+        AudioManager.instance.Play("ButtonPress");
         anim.Play("Intro_Good");
-        nextSentenceOutro();
+        index = 15;
+        textDisplay.text = "";
+        StartCoroutine(Type());
+        StartCoroutine(LoadMenuAfterDelay());
     }
 
 }

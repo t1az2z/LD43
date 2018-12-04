@@ -37,12 +37,13 @@ public class UIController : MonoBehaviour {
 
     }
 	
+    
 	// Update is called once per frame
 	void Update ()
     {
         UpdatehealthBar();
         UpdateAmmo();
-
+        if (GameManager.Instance.player.isDead) textAnim.SetBool("ShowTooltip", false);
         weapon.sprite = GameManager.Instance.player.weapon.GetComponent<SpriteRenderer>().sprite;
 
         if (GameManager.Instance.player.isDead)
@@ -61,6 +62,10 @@ public class UIController : MonoBehaviour {
         }
     }
 
+    public void Restart()
+    {
+        GameManager.Instance.LoadScene(2);
+    }
     private void UpdateAmmo()
     {
         maxAmmo = GameManager.Instance.player.maxAmmo;

@@ -18,8 +18,9 @@ public class EnemieDeath : StateMachineBehaviour {
         enemy.death.volume = Random.Range(.8f, 1f);
         enemy.death.pitch = Random.Range(.9f, 1f);
         enemy.death.Play();
-        if (animator.transform.parent.transform.parent.GetComponent<Spawner>() != null)
-            animator.transform.parent.transform.parent.GetComponent<Spawner>().number--;
+        if (animator.transform.parent.transform.parent != null)
+            if (animator.transform.parent.transform.parent.GetComponent<Spawner>() != null)
+                animator.transform.parent.transform.parent.GetComponent<Spawner>().number--;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

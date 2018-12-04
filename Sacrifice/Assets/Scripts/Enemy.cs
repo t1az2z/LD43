@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour {
     bool agro = false;
     public GameObject weaponToSpawn;
     public int weaponDropChance;
+    bool weaponSpawned = false;
 
     private void Start()
     {
@@ -50,7 +51,6 @@ public class Enemy : MonoBehaviour {
             agro = true;
         }
 
-
     }
 
 
@@ -64,11 +64,15 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void EnemyDeath()
+    public void EnemyDeath()
     {
         animator.SetTrigger("Dead");
-        if (rnd >= 100-weaponDropChance)
-            Instantiate(weaponToSpawn, transform.position, Quaternion.identity);
+        if (!weaponSpawned)
+        {
+            if (rnd >= 100 - weaponDropChance)
+                Instantiate(weaponToSpawn, transform.position, Quaternion.identity);
+            weaponSpawned = true;
+        }
         /*alive = false;
         AIdesset.enabled = false;
         ailerp.enabled = false;
@@ -90,10 +94,6 @@ public class Enemy : MonoBehaviour {
         if (collision.CompareTag("Player") && !collision.GetComponent<Player>().isDead)
             animator.SetTrigger("Attack");
     }*/
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, agroRadius);
-    }
+
 
 }

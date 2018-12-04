@@ -28,10 +28,11 @@ public class Player : MonoBehaviour {
     public int maxHP = 10;
     public int hp = 10;
     [Tooltip("In HP")] public int ammoPrice = 1;
-    SpriteRenderer sr;
     public bool isDead = false;
 
     public bool allowFire;
+    bool allowKnife = true;
+    public float knifeDelay = .8f;
 
     public Animator animator;
 
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
-        sr = GetComponent<SpriteRenderer>();
+
         animator = GetComponent<Animator>();
 
         maxAmmo = weapon.maxAmmo;
@@ -92,10 +93,9 @@ public class Player : MonoBehaviour {
                     AudioManager.instance.Play("OutOfAmmo");
                 }
             }
-            else if (Input.GetMouseButtonDown(1))
+            else if (Input.GetMouseButtonDown(1) && allowKnife)
             {
-                //play knife audio
-                animator.SetTrigger("KnifeHit");
+                StartCoroutine(KnifeHit());
             }
             RotateAndFlipDependingOnMousePos(mousePosition);
         }
@@ -116,9 +116,17 @@ public class Player : MonoBehaviour {
             isDead = true;
             animator.SetTrigger("Death");
             AudioManager.instance.Play("PlayerDeath");
+            AudioManager.instance.Stop("Theme"); 
         }
     }
 
+    IEnumerator KnifeHit()
+    {
+        allowKnife = false;
+        animator.SetTrigger("KnifeHit");
+        yield return new WaitForSeconds(knifeDelay);
+        allowKnife = true;
+    }
     private void LateUpdate()
     {
         

@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1188064039493154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.9389821, y: 5.5185666, z: -0.17578125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -54,14 +54,14 @@ MonoBehaviour:
   sounds:
   - name: Crossbow
     clip: {fileID: 8300000, guid: da6b1485fd59d414c87f76ebb4eaff69, type: 3}
-    volume: 1
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
     isPlaying: 0
   - name: Gun
     clip: {fileID: 8300000, guid: c7cb6af183da0274fb598fdc4fe36054, type: 3}
-    volume: 1
+    volume: 0.55
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
     isPlaying: 0
   - name: OutOfAmmo
     clip: {fileID: 8300000, guid: 9760799dd4a83a9479ef811ae8e52a75, type: 3}
-    volume: 0.804
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -103,14 +103,14 @@ MonoBehaviour:
     isPlaying: 0
   - name: ArrowRic
     clip: {fileID: 8300000, guid: dbefa912aec6be849a841326edbcbbeb, type: 3}
-    volume: 0.596
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
     isPlaying: 0
   - name: GunRic
     clip: {fileID: 8300000, guid: bec55352e322bb34eafae9214f85dd56, type: 3}
-    volume: 0.648
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -124,7 +124,7 @@ MonoBehaviour:
     isPlaying: 0
   - name: PlayerDamage
     clip: {fileID: 8300000, guid: 8825a83ef2f078d4291440f4736f1cdf, type: 3}
-    volume: 0.706
+    volume: 0.65
     pitch: 1
     loop: 0
     source: {fileID: 0}

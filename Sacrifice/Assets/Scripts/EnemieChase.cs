@@ -18,7 +18,7 @@ public class EnemieChase : StateMachineBehaviour {
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 
-        if (enemy.player.transform.position.x > enemy.transform.position.x)
+        if (enemy.player.transform.position.x*1.1f > enemy.transform.position.x)
             enemy.sr.flipX = false;
         else
             enemy.sr.flipX = true;
@@ -28,6 +28,11 @@ public class EnemieChase : StateMachineBehaviour {
             steps.volume = Random.Range(.2f, .35f);
             steps.pitch = Random.Range(.8f, 1f);
             steps.Play();
+        }
+
+        if (!animator.GetComponent<Enemy>().alive)
+        {
+            animator.GetComponent<Enemy>().EnemyDeath();
         }
     }
 

@@ -2,25 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemieAttack : StateMachineBehaviour {
-    Enemy enemy;
+public class DeathBackup : StateMachineBehaviour {
+
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        enemy = animator.gameObject.GetComponent<Enemy>();
+	    if (!animator.GetComponent<Enemy>().alive)
+        {
+            animator.GetComponent<Enemy>().EnemyDeath();
+        }
 	}
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-        if (enemy.player.transform.position.x*1.1f > enemy.transform.position.x)
-            enemy.sr.flipX = false;
-        else
-            enemy.sr.flipX = true;
-
-        if (enemy.player.isDead)
+        if (!animator.GetComponent<Enemy>().alive)
         {
-            animator.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-            animator.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-            animator.Play("Zombie_Idle");
+            animator.GetComponent<Enemy>().EnemyDeath();
         }
     }
 

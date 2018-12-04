@@ -672,14 +672,16 @@ MonoBehaviour:
     you."
   - You:?...
   - 'Stranger: You have 2 options: go away and stay alive.'
-  - 'You: and?'
+  - 'You: or?'
   - 'Stranger: Sacrifice yourself and cure The Plague.'
   - 'Stranger: What will you choose? Chose wisely! Ha-ha-ha!'
+  - 'Stranger: Good choise! Ha-ha-ha!'
   typeSpeed: 0.02
   cButton: {fileID: 951119302}
   anim: {fileID: 1596810947}
   bButton: {fileID: 866268132}
   gButton: {fileID: 1496577835}
+  skipButton: {fileID: 1572027200}
 --- !u!4 &834056721
 Transform:
   m_ObjectHideFlags: 0
@@ -728,7 +730,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -287, y: -123}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 200.74, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &866268134
 MonoBehaviour:
@@ -750,8 +752,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.105882354}
-    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.13333334}
+    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.69803923}
+    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.69803923}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -794,7 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.14901961}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -947,7 +949,7 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
@@ -984,7 +986,7 @@ GameObject:
   - component: {fileID: 951119305}
   - component: {fileID: 951119304}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Continue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,8 +1031,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.105882354}
-    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.13333334}
+    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.69803923}
+    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.69803923}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1073,7 +1075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.14901961}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1289,8 +1291,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.105882354}
-    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.13333334}
+    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.69803923}
+    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.69803923}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1333,7 +1335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.14901961}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1341,7 +1343,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1372,7 +1374,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 313, y: -123}
-  m_SizeDelta: {x: 160, y: 30}
+  m_SizeDelta: {x: 330.77, y: 40.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1572027200
 GameObject:
@@ -1431,8 +1433,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.105882354}
-    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.13333334}
+    m_HighlightedColor: {r: 0.8490566, g: 0.5045448, b: 0.25556603, a: 0.69803923}
+    m_PressedColor: {r: 0.671, g: 0.3129454, b: 0.3129454, a: 0.69803923}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1475,7 +1477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.14901961}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

@@ -24,12 +24,19 @@ public class Spawner : MonoBehaviour {
         if (finished && onGates)
         {
             open = false;
-            /*foreach (Transform child in transform)
-            {
-                open = !child.transform.GetChild(0).GetComponent<Enemy>().alive;
-            }*/
-            if (number == 0)
+
+            
+
+            if (number <= 0)
                 open = true;
+
+            if (number <= numberOfEnemiesToSpawn)
+            {
+                foreach (Transform child in transform)
+                {
+                    open = !child.transform.GetChild(0).GetComponent<Enemy>().alive;
+                }
+            }
 
             if (open)
                 if (gates != null)
