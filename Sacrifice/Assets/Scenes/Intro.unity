@@ -397,7 +397,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 415565828}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
   m_Name: 
@@ -441,7 +441,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 11.32
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -671,12 +671,14 @@ MonoBehaviour:
   - "Stranger: Go to the N\u2019yarmy village. Cleanse it and find the altar. But
     hurry up, your time is running out!"
   - "You: But how can I do that? I\u2019m a doctor, not a warrior."
-  - "Stranger: Ah... yes, take this gift from me. It will help you along the It will
-    help you along the way. Kill unclean. It will keep you alive\u2026 for some time.
-    Go, Plague Doctor, fulfill your duty!"
+  - "Stranger: Ah... yes, take this gift from me. It will help you along the way.
+    Kill unclean. It will keep you alive\u2026 for some time. Go, Plague Doctor, fulfill
+    your duty!"
   typeSpeed: 0.02
   cButton: {fileID: 951119302}
   anim: {fileID: 1596810947}
+  bButton: {fileID: 0}
+  gButton: {fileID: 0}
 --- !u!4 &834056721
 Transform:
   m_ObjectHideFlags: 0

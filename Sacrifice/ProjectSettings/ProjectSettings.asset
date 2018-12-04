@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: t&kGames
   productName: BloodBalance
-  defaultCursor: {fileID: 2800000, guid: 878c7ca08df92224ab8605e040fdf140, type: 3}
+  defaultCursor: {fileID: 2800000, guid: 9472285abc0c560488759cd533e0e7b3, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
   m_ShowUnitySplashScreen: 1

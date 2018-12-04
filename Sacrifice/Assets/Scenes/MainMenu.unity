@@ -168,7 +168,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "W,S,A,D - Move.\nLMB - Shoot.\nSpace - Sacrifice HP \nto get ammo. \nRMB
-    - Knife,f\nE - Pick up weapon."
+    - Knife.\nE - Pick up weapon.\nAlt+f4 - Quit."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2a968ed2a84ce0489f0a20dbb7f74cd, type: 2}
   m_sharedMaterial: {fileID: 21233048413462072, guid: f2a968ed2a84ce0489f0a20dbb7f74cd,
@@ -237,12 +237,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 0}
-    characterCount: 98
+    characterCount: 112
     spriteCount: 0
-    spaceCount: 22
-    wordCount: 25
+    spaceCount: 25
+    wordCount: 28
     linkCount: 0
-    lineCount: 6
+    lineCount: 7
     pageCount: 1
     materialCount: 1
   m_havePropertiesChanged: 0
@@ -1378,15 +1378,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4048124561946324, guid: b07c45b261bc02c4ab6a16e67743b767, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.9389821
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4048124561946324, guid: b07c45b261bc02c4ab6a16e67743b767, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 5.5185666
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4048124561946324, guid: b07c45b261bc02c4ab6a16e67743b767, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.17578125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4048124561946324, guid: b07c45b261bc02c4ab6a16e67743b767, type: 2}
       propertyPath: m_LocalRotation.x

@@ -191,7 +191,7 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PickUp"))
+        if (collision.CompareTag("PickUp") && !isDead)
         {
             GameManager.Instance.ui.textAnim.SetBool("ShowTooltip", true);
             if (Input.GetKeyDown(KeyCode.E))
@@ -214,7 +214,7 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("PickUp"))
+        if (collision.CompareTag("PickUp") && !isDead)
         {
             //show tooltip
             if (Input.GetKeyDown(KeyCode.E))
