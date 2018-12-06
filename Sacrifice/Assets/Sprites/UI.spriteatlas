@@ -44,11 +44,14 @@ SpriteAtlas:
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: 0bb64ac0a786978408fc7d784cd69377, type: 3}
   - {fileID: 21300000, guid: f69a7ae1abb10974aa3ee7a5f4904828, type: 3}
   - {fileID: 21300006, guid: 52563383a2dbff9409776a31368ead3e, type: 3}
   - {fileID: 21300004, guid: 52563383a2dbff9409776a31368ead3e, type: 3}
   - {fileID: 21300002, guid: 52563383a2dbff9409776a31368ead3e, type: 3}
   - {fileID: 21300000, guid: 52563383a2dbff9409776a31368ead3e, type: 3}
+  - {fileID: 21300000, guid: 4646d38823b1d2643a4c169085656622, type: 3}
+  - {fileID: 21300000, guid: ce2411ecdb8b79547844c93b81872ed5, type: 3}
   - {fileID: 21300008, guid: e89379dd37e0fef439600d5cbf011ae3, type: 3}
   - {fileID: 21300010, guid: e89379dd37e0fef439600d5cbf011ae3, type: 3}
   - {fileID: 21300012, guid: e89379dd37e0fef439600d5cbf011ae3, type: 3}
@@ -58,11 +61,14 @@ SpriteAtlas:
   - {fileID: 21300006, guid: e89379dd37e0fef439600d5cbf011ae3, type: 3}
   - {fileID: 21300000, guid: 9d79800e4e11d064cb92b2e90c6261f1, type: 3}
   m_PackedSpriteNamesToIndex:
+  - l1
   - GameOver
   - Menu_3
   - Menu_2
   - Menu_1
   - Menu_0
+  - Splash
+  - Logo
   - UI_4
   - UI_5
   - UI_6

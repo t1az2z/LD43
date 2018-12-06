@@ -105,7 +105,7 @@ public class Player : MonoBehaviour {
             mousePosition = Vector2.zero;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Sacrifice HP"))
         {
             GetAmmo();
         }
@@ -135,6 +135,29 @@ public class Player : MonoBehaviour {
     void FixedUpdate ()
     {
         PlayerMovement();
+
+        var pUps = Physics2D.OverlapCircleAll(transform.position, .5f);
+        foreach (var pcol in pUps)
+        {
+            if (pcol.CompareTag("PickUp"))
+            {
+                if (Input.GetButton("PickUp"))
+                {
+                        GameManager.Instance.ui.textAnim.SetBool("ShowTooltip", false);
+                        weapon.InitializeWeapon(pcol.GetComponent<WeaponPickUp>().weapon);
+                        shootCost = weapon.shootCost;
+                        maxAmmo = weapon.maxAmmo;
+                        if (ammo > maxAmmo)
+                            ammo = maxAmmo;
+                        if (ammo + ammoFromPickupWeapon <= maxAmmo)
+                            ammo += ammoFromPickupWeapon;
+                        else
+                            ammo += maxAmmo - ammoFromPickupWeapon;
+                        AudioManager.instance.Play("WeaponPickUp");
+                        Destroy(pcol.gameObject);
+                }
+            }
+        }
     }
 
     private IEnumerator Knockback(Vector3 direction, float strength, float duration)
@@ -197,12 +220,12 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+   private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("PickUp") && !isDead)
         {
             GameManager.Instance.ui.textAnim.SetBool("ShowTooltip", true);
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetButton("PickUp"))
             {
                 GameManager.Instance.ui.textAnim.SetBool("ShowTooltip", false);
                 weapon.InitializeWeapon(collision.GetComponent<WeaponPickUp>().weapon);
@@ -225,7 +248,7 @@ public class Player : MonoBehaviour {
         if (collision.CompareTag("PickUp") && !isDead)
         {
             //show tooltip
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetButton("PickUp"))
             {
                 GameManager.Instance.ui.textAnim.SetBool("ShowTooltip", false);
                 weapon.InitializeWeapon(collision.GetComponent<WeaponPickUp>().weapon);
@@ -240,6 +263,7 @@ public class Player : MonoBehaviour {
             }
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D collision)
     {

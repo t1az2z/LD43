@@ -98,6 +98,7 @@ public class Dialog : MonoBehaviour {
     }
     public void Skip()
     {
+        AudioManager.instance.Stop("Intro");
         SceneManager.LoadScene(2);
     }
     public void Menu()
