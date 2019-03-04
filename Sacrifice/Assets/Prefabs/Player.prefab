@@ -146,7 +146,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1497752756071656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.7, y: -14.8, z: 0}
+  m_LocalPosition: {x: -26.03, y: -14.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4547486019606072}
@@ -197,7 +197,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.28496456, y: 0.36892605}
@@ -225,8 +225,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02944256, y: 0.18719846}
-  m_Size: {x: 0.41608506, y: 0.3576171}
+  m_Offset: {x: -0.06, y: 0.18719846}
+  m_Size: {x: 0.3576171, y: 0.3576171}
   m_Direction: 1
 --- !u!95 &95962493418212308
 Animator:
@@ -314,6 +314,7 @@ MonoBehaviour:
   speed: 8
   externalForcesFactor: 1
   weapon: {fileID: 114780260219076180}
+  shootCost: 1
   ammo: 20
   maxAmmo: 20
   ammoAmountToGetForPrice: 5
@@ -322,6 +323,7 @@ MonoBehaviour:
   ammoPrice: 2
   isDead: 0
   allowFire: 1
+  knifeDelay: 0.8
   animator: {fileID: 95962493418212308}
   ammoFromPickupWeapon: 3
 --- !u!114 &114706832336953536
@@ -377,11 +379,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawner: {fileID: 1069661525476514}
   weaponType: {fileID: 11400000, guid: a1e29870e1e340443805530d912ad10d, type: 2}
-  knockback: 1
-  dispersion: 0
-  shootCost: 2
+  knockback: 3
+  dispersion: 0.1
+  shootCost: 1
   shell: {fileID: 1818084793756702, guid: db4faeef1a8dfe749a921c37b8c917e8, type: 2}
-  maxAmmo: 15
+  maxAmmo: 20
 --- !u!114 &114795871719789642
 MonoBehaviour:
   m_ObjectHideFlags: 1
